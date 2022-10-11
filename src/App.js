@@ -1,4 +1,10 @@
 import './index.css';
+import logo from './images/logo.svg';
+import pen from './images/pen.svg';
+import edit from './images/edit.svg';
+import plus from './images/plus.svg';
+
+
 
 function App() {
   return (
@@ -6,7 +12,7 @@ function App() {
     <div class="container">
       <header class="header">
         <img
-          src="<%=require('./images/logo.svg')%>"
+          src={logo}
           alt="Логотип Mesto Russia"
           class="header__logo"
         />
@@ -15,7 +21,7 @@ function App() {
         <section class="profile">
           <button class="profile__cover">
             <img
-              src="<%=require('./images/pen.svg')%>"
+              src={pen}
               alt="карандаш"
               class="profile__pen"
             />
@@ -34,7 +40,7 @@ function App() {
                 aria-label="редактировать профиль"
               >
                 <img
-                  src="<%=require('./images/edit.svg')%>"
+                  src={edit}
                   alt="карандаш"
                   class="profile__edit-button-img"
                 />
@@ -48,7 +54,7 @@ function App() {
             aria-label="добавить карточку"
           >
             <img
-              src="<%=require('./images/plus.svg')%>"
+              src={plus}
               alt="плюс"
               class="profile__add-button-img"
             />
