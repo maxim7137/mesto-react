@@ -1,22 +1,82 @@
+import React, { useState } from 'react';
+import api from '../utils/Api.js';
+
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
 
 function Main(props) {
+  const [userName, setUserName] = useState('Жак Ив Кусто');
+  const [userDescription, setUserDescription] = useState(
+    'Исследователь океана'
+  );
+  const [userAvatar, setUseAvatar] = useState(
+    'https://www.placecage.com/c/120/120'
+  );
+  // Загрузка начальных данных --
+  api
+    .getInitialUser()
+    .then((result) => {
+      setUserName(result.name);
+      setUserDescription(result.about);
+      setUseAvatar(result.avatar)
+      const userId = result._id;
+/*
+      // Загрузка начальных карточек --
+      api
+        .getInitialCards()
+        .then((result) => {
+          cardsList.renderItems(result); // вставка карточек
+          const cardsNodeList = cardsContainer.querySelectorAll('li'); // вставка лайков
+          for (let i = 0; i < result.length; i++) {
+            cardsNodeList[i].querySelector('span').textContent =
+              result[i].likes.length;
+          }
+          // проверка своих карточек
+          // лайкнута ли мной
+          function isLiked(array) {
+            const arrayOfLikedId = [];
+            array.forEach((element) => {
+              arrayOfLikedId.push(element._id);
+            });
+            const containsUserId = arrayOfLikedId.some(
+              (element) => element === userId
+            );
+            return containsUserId;
+          } // лайкнута ли мной //
+
+          for (let i = 0; i < result.length; i++) {
+            // для удаления
+            if (result[i].owner._id !== userId) {
+              cardsNodeList[i].querySelector('.elements__trash').remove();
+            }
+            // для лайков
+            if (isLiked(result[i].likes)) {
+              cardsNodeList[i]
+                .querySelector(selectorsOfCard.buttonLike)
+                .classList.add(selectorsOfCard.liked);
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        });
+      // -- Загрузка начальных карточек // */
+    })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+    });
+  // -- Загрузка начальных данных //
   return (
     <main className="main">
       <section className="profile">
         <button className="profile__cover" onClick={props.onEditAvatar}>
           <img src={pen} alt="карандаш" className="profile__pen" />
-          <img
-            src="https://www.placecage.com/c/120/120"
-            alt="аватар"
-            className="profile__avatar"
-          />
+          <img src={userAvatar} alt="аватар" className="profile__avatar" />
         </button>
         <div className="profile__info">
           <div className="profile__name-edit">
-            <h1 className="profile__name">Жак-Ив Кусто</h1>
+            <h1 className="profile__name">{userName}</h1>
             <button
               className="profile__edit-button"
               type="button"
@@ -30,7 +90,7 @@ function Main(props) {
               />
             </button>
           </div>
-          <p className="profile__character">Исследователь океана</p>
+          <p className="profile__character">{userDescription}</p>
         </div>
         <button
           className="profile__add-button"

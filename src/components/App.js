@@ -6,11 +6,12 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 
 import ImagePopup from './ImagePopup.js';
-import PopupWithForm from './PopupWithForm.js';
-import { ProfileEditForm } from './PopupWithForm.js';
-import { CardAddForm } from './PopupWithForm.js';
-import { AvatarEditForm } from './PopupWithForm.js';
-import { CardDeleteForm } from './PopupWithForm.js';
+import PopupWithForm, {
+  ProfileEditForm,
+  CardAddForm,
+  AvatarEditForm,
+  CardDeleteForm,
+} from './PopupWithForm.js';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
