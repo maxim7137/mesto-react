@@ -1,30 +1,12 @@
-import ImagePopup from './ImagePopup.js';
-import PopupWithForm from './PopupWithForm.js';
-
-import { ProfileEditForm } from './PopupWithForm.js';
-import { CardAddForm } from './PopupWithForm.js';
-import { AvatarEditForm } from './PopupWithForm.js';
-import { CardDeleteForm } from './PopupWithForm.js';
-
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
 
-function handleEditAvatarClick() {
-  document.querySelector('.popup_avatar').classList.add('popup_opened');
-}
-function handleEditProfileClick() {
-  document.querySelector('.popup_profile').classList.add('popup_opened');
-}
-function handleAddPlaceClick() {
-  document.querySelector('.popup_card').classList.add('popup_opened');
-}
-
-function Main() {
+function Main(props) {
   return (
     <main className="main">
       <section className="profile">
-        <button className="profile__cover" onClick={handleEditAvatarClick}>
+        <button className="profile__cover" onClick={props.onEditAvatar}>
           <img src={pen} alt="карандаш" className="profile__pen" />
           <img
             src="https://www.placecage.com/c/120/120"
@@ -39,7 +21,7 @@ function Main() {
               className="profile__edit-button"
               type="button"
               aria-label="редактировать профиль"
-              onClick={handleEditProfileClick}
+              onClick={props.onEditProfile}
             >
               <img
                 src={edit}
@@ -54,7 +36,7 @@ function Main() {
           className="profile__add-button"
           type="button"
           aria-label="добавить карточку"
-          onClick={handleAddPlaceClick}
+          onClick={props.onAddPlace}
         >
           <img src={plus} alt="плюс" className="profile__add-button-img" />
         </button>
@@ -87,27 +69,6 @@ function Main() {
           </li>
         </template>
       </ul>
-      <PopupWithForm
-        name="profile"
-        title="Редактировать профиль"
-        childrenForm={<ProfileEditForm />}
-      />
-      <PopupWithForm
-        name="card"
-        title="Новое место"
-        childrenForm={<CardAddForm />}
-      />
-      <PopupWithForm
-        name="avatar"
-        title="Обновить аватар"
-        childrenForm={<AvatarEditForm />}
-      />
-      <PopupWithForm
-        name="delete"
-        title="Вы уверены?"
-        childrenForm={<CardDeleteForm />}
-      />
-      <ImagePopup />
     </main>
   );
 }
