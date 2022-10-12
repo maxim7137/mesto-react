@@ -10,7 +10,6 @@ function App() {
         <Header />
         <Main />
         <Footer />
-        {/* <!-- Попап профиля --> */}
       </div>
     </div>
   );

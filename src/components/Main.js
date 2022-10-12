@@ -3,11 +3,21 @@ import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
 import close from '../images/close.svg';
 
+function handleEditAvatarClick() {
+  document.querySelector('.popup_avatar').classList.add('popup_opened');
+}
+function handleEditProfileClick() {
+  document.querySelector('.popup_profile').classList.add('popup_opened');
+}
+function handleAddPlaceClick() {
+  document.querySelector('.popup_card').classList.add('popup_opened');
+}
+
 function Main() {
   return (
     <main className="main">
       <section className="profile">
-        <button className="profile__cover">
+        <button className="profile__cover" onClick={handleEditAvatarClick}>
           <img src={pen} alt="карандаш" className="profile__pen" />
           <img
             src="https://www.placecage.com/c/120/120"
@@ -22,6 +32,7 @@ function Main() {
               className="profile__edit-button"
               type="button"
               aria-label="редактировать профиль"
+              onClick={handleEditProfileClick}
             >
               <img
                 src={edit}
@@ -36,6 +47,7 @@ function Main() {
           className="profile__add-button"
           type="button"
           aria-label="добавить карточку"
+          onClick={handleAddPlaceClick}
         >
           <img src={plus} alt="плюс" className="profile__add-button-img" />
         </button>
@@ -68,7 +80,7 @@ function Main() {
           </li>
         </template>
       </ul>
-
+      {/* <!-- Попап профиля --> */}
       <div className="popup popup_profile">
         <div className="popup__container">
           <button
