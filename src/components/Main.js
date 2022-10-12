@@ -1,3 +1,9 @@
+import PopupWithForm from './PopupWithForm.js';
+import { ProfileEditForm } from './PopupWithForm.js';
+import { CardAddForm } from './PopupWithForm.js';
+import { AvatarEditForm } from './PopupWithForm.js';
+import { CardDeleteForm } from './PopupWithForm.js';
+
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
@@ -80,6 +86,58 @@ function Main() {
           </li>
         </template>
       </ul>
+      <PopupWithForm
+        name="profile"
+        title="Редактировать профиль"
+        childrenForm={<ProfileEditForm />}
+      />
+      <PopupWithForm
+        name="card"
+        title="Новое место"
+        childrenForm={<CardAddForm />}
+      />
+      <PopupWithForm
+        name="avatar"
+        title="Обновить аватар"
+        childrenForm={<AvatarEditForm />}
+      />
+      <PopupWithForm
+        name="delete"
+        title="Вы уверены?"
+        childrenForm={<CardDeleteForm />}
+      />
+
+      {/* <!-- Попап картинки--> */}
+      <div className="popup popup_image">
+        <figure className="popup__container">
+          <button
+            className="popup__close-button cross"
+            type="button"
+            aria-label="закрыть"
+          >
+            <img
+              src={close}
+              alt="Крест"
+              className="popup__close-button-img cross__img"
+            />
+          </button>
+          <img
+            className="popup__img"
+            src="https://loremflickr.com/1280/720"
+            alt="Большое фото загруженное пользователем"
+          />
+          <figcaption className="popup__caption">Подпись</figcaption>
+        </figure>
+      </div>
+    </main>
+  );
+}
+
+export default Main;
+
+function PopupsReserv() {
+  return (
+    <>
       {/* <!-- Попап профиля --> */}
       <div className="popup popup_profile">
         <div className="popup__container">
@@ -194,60 +252,6 @@ function Main() {
           </div>
         </div>
       </div>
-      {/* <!-- Попап картинки--> */}
-      <div className="popup popup_image">
-        <figure className="popup__container">
-          <button
-            className="popup__close-button cross"
-            type="button"
-            aria-label="закрыть"
-          >
-            <img
-              src={close}
-              alt="Крест"
-              className="popup__close-button-img cross__img"
-            />
-          </button>
-          <img
-            className="popup__img"
-            src="https://loremflickr.com/1280/720"
-            alt="Большое фото загруженное пользователем"
-          />
-          <figcaption className="popup__caption">Подпись</figcaption>
-        </figure>
-      </div>
-      {/* <!-- Попап удаления карточки--> */}
-      <div className="popup popup_delete">
-        <div className="popup__container">
-          <button
-            className="popup__close-button cross"
-            type="button"
-            aria-label="закрыть"
-          >
-            <img
-              src={close}
-              alt="Крест"
-              className="popup__close-button-img cross__img"
-            />
-          </button>
-          <div className="popup__form-container">
-            <h2 className="popup__heading">Вы уверены?</h2>
-            <form
-              name="card-delete"
-              className="popup__form popup__form_delete"
-              noValidate
-            >
-              <button
-                type="submit"
-                className="popup__button"
-                aria-label="создать новую карточку"
-              >
-                Да
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
       {/* <!-- Попап аватара --> */}
       <div className="popup popup_avatar">
         <div className="popup__container">
@@ -291,8 +295,61 @@ function Main() {
           </div>
         </div>
       </div>
-    </main>
+      {/* <!-- Попап удаления карточки--> */}
+      <div className="popup popup_delete">
+        <div className="popup__container">
+          <button
+            className="popup__close-button cross"
+            type="button"
+            aria-label="закрыть"
+          >
+            <img
+              src={close}
+              alt="Крест"
+              className="popup__close-button-img cross__img"
+            />
+          </button>
+          <div className="popup__form-container">
+            <h2 className="popup__heading">Вы уверены?</h2>
+            <form
+              name="card-delete"
+              className="popup__form popup__form_delete"
+              noValidate
+            >
+              <button
+                type="submit"
+                className="popup__button"
+                aria-label="создать новую карточку"
+              >
+                Да
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* <!-- Попап картинки--> */}
+      <div className="popup popup_image">
+        <figure className="popup__container">
+          <button
+            className="popup__close-button cross"
+            type="button"
+            aria-label="закрыть"
+          >
+            <img
+              src={close}
+              alt="Крест"
+              className="popup__close-button-img cross__img"
+            />
+          </button>
+          <img
+            className="popup__img"
+            src="https://loremflickr.com/1280/720"
+            alt="Большое фото загруженное пользователем"
+          />
+          <figcaption className="popup__caption">Подпись</figcaption>
+        </figure>
+      </div>
+    </>
   );
 }
-
-export default Main;
