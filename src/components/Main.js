@@ -1,6 +1,7 @@
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
+import close from '../images/close.svg';
 
 function Main() {
   return (
@@ -76,7 +77,7 @@ function Main() {
             aria-label="закрыть"
           >
             <img
-              src="<%=require('./images/close.svg')%>"
+              src={close}
               alt="Крест"
               className="popup__close-button-img cross__img"
             />
@@ -134,7 +135,7 @@ function Main() {
             aria-label="закрыть"
           >
             <img
-              src="<%=require('./images/close.svg')%>"
+              src={close}
               alt="Крест"
               className="popup__close-button-img cross__img"
             />
@@ -190,7 +191,7 @@ function Main() {
             aria-label="закрыть"
           >
             <img
-              src="<%=require('./images/close.svg')%>"
+              src={close}
               alt="Крест"
               className="popup__close-button-img cross__img"
             />
@@ -212,7 +213,7 @@ function Main() {
             aria-label="закрыть"
           >
             <img
-              src="<%=require('./images/close.svg')%>"
+              src={close}
               alt="Крест"
               className="popup__close-button-img cross__img"
             />
@@ -244,7 +245,7 @@ function Main() {
             aria-label="закрыть"
           >
             <img
-              src="<%=require('./images/close.svg')%>"
+              src={close}
               alt="Крест"
               className="popup__close-button-img cross__img"
             />
