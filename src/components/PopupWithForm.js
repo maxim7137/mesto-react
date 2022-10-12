@@ -138,6 +138,7 @@ function PopupWithForm(props) {
           className="popup__close-button cross"
           type="button"
           aria-label="закрыть"
+          onClick={props.onClose}
         >
           <img
             src={close}
