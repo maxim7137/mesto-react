@@ -5,13 +5,12 @@ import Footer from './Footer.js';
 
 function App() {
   return (
-    <div className='page'>
-      <div className='container'>
+    <div className="page">
+      <div className="container">
         <Header />
         <Main />
         <Footer />
         {/* <!-- Попап профиля --> */}
-        
       </div>
     </div>
   );
