@@ -14,7 +14,8 @@ export function ProfileEditForm(props) {
           name="name"
           id="user-name-input"
           className="popup__input popup__input_user_name"
-          value="Жак-Ив Кусто"
+          value=""
+          placeholder="Имя"
           minLength="2"
           maxLength="40"
         />
@@ -27,7 +28,8 @@ export function ProfileEditForm(props) {
           name="about"
           id="user-character-input"
           className="popup__input popup__input_user_character"
-          value="Исследователь океана"
+          value=""
+          placeholder="Занятие"
           minLength="2"
           maxLength="200"
         />
@@ -132,7 +134,11 @@ export function CardDeleteForm(props) {
 
 function PopupWithForm(props) {
   return (
-    <div className={`popup popup_${props.name} ${props.isOpen ? 'popup_opened' : ''}`}>
+    <div
+      className={`popup popup_${props.name} ${
+        props.isOpen ? 'popup_opened' : ''
+      }`}
+    >
       <div className="popup__container">
         <button
           className="popup__close-button cross"
