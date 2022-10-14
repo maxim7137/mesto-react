@@ -17,6 +17,8 @@ function Main(props) {
   );
   const [cards, setCards] = useState([]);
 
+  const handleCardClick = props.onHandleCardClick;
+
   useEffect(() => {
     // Загрузка начальных данных --
     api
@@ -79,7 +81,7 @@ function Main(props) {
       </section>
       <ul className="elements">
         {cards.map((card) => (
-          <Card key={card._id} userId={userId} {...card} />
+          <Card key={card._id} userId={userId} onCardClick={handleCardClick} card={card} {...card} />
         ))}
       </ul>
     </main>

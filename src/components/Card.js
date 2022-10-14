@@ -21,7 +21,12 @@ function errorHandler(event) {
   event.target.src = srcError;
 }
 
-function Card({ link, name, likes, userId, owner }) {
+
+function Card({ link, name, likes, userId, owner, onCardClick, card }) {
+  // функция обработчика клика на картинку
+function handleClick() {
+  onCardClick(card);
+}
   return (
     <li className="elements__element">
       <img
@@ -29,6 +34,7 @@ function Card({ link, name, likes, userId, owner }) {
         alt={name}
         className="elements__image"
         onError={errorHandler}
+        onClick={handleClick}
       />
       <div className="elements__captions">
         <h2 className="elements__name">{name}</h2>
