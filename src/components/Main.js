@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../utils/Api.js';
 import Card from './Card.js';
-
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
@@ -81,7 +80,13 @@ function Main(props) {
       </section>
       <ul className="elements">
         {cards.map((card) => (
-          <Card key={card._id} userId={userId} onCardClick={handleCardClick} card={card} {...card} />
+          <Card
+            key={card._id}
+            userId={userId}
+            onCardClick={handleCardClick}
+            card={card}
+            {...card}
+          />
         ))}
       </ul>
     </main>

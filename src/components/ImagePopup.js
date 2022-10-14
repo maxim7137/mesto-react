@@ -1,6 +1,6 @@
 import close from '../images/close.svg';
 
-function ImagePopup({isOpen, onClose, card }) {
+function ImagePopup({ isOpen, onClose, card }) {
   return (
     <div className={`popup popup_image ${isOpen ? 'popup_opened' : ''}`}>
       <figure className="popup__container">

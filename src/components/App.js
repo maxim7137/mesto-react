@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import '../index.css';
+
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
-
 import ImagePopup from './ImagePopup.js';
 import PopupWithForm, {
   ProfileEditForm,
@@ -29,12 +29,10 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
-
   function handleCardClick(card) {
     setSelectedCard(card);
     setIsImagePopupOpen(true);
   }
-
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -79,7 +77,11 @@ function App() {
           title="Вы уверены?"
           childrenForm={<CardDeleteForm />}
         />
-        <ImagePopup isOpen={isImagePopupOpen} onClose={closeAllPopups} card={selectedCard} />
+        <ImagePopup
+          isOpen={isImagePopupOpen}
+          onClose={closeAllPopups}
+          card={selectedCard}
+        />
         <Footer />
       </div>
     </div>
