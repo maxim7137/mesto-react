@@ -1,5 +1,5 @@
 class Api {
-  #isServerOk(res) {
+  _isServerOk(res) {
     if (res.ok) {
       return res.json();
     }
@@ -17,7 +17,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   getInitialCards() {
@@ -25,7 +25,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   setUser({ name, about }) {
@@ -39,7 +39,7 @@ class Api {
         name,
         about,
       }),
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   setAvatar(avatar) {
@@ -52,7 +52,7 @@ class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   setCard({ name, link }) {
@@ -66,7 +66,7 @@ class Api {
         name,
         link,
       }),
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   delCard(_id) {
@@ -75,7 +75,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   likeCard(_id) {
@@ -84,7 +84,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 
   dislikeCard(_id) {
@@ -93,7 +93,7 @@ class Api {
       headers: {
         authorization: this._token,
       },
-    }).then(this.#isServerOk);
+    }).then(this._isServerOk);
   }
 }
 const api = new Api();
