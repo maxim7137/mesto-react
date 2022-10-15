@@ -1,3 +1,4 @@
+import React from 'react';
 import trash from '../images/trash.svg';
 
 const srcError =
