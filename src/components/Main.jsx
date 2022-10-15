@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import api from '../utils/Api.js';
-import Card from './Card.js';
+import api from '../utils/Api';
+import Card from './Card';
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
