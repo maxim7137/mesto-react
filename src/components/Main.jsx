@@ -18,31 +18,35 @@ function Main(props) {
 
   const handleCardClick = props.onHandleCardClick;
 
-  useEffect(() => {
-    // Загрузка начальных данных --
-    api
-      .getInitialUser()
-      .then((result) => {
-        setUserName(result.name);
-        setUserDescription(result.about);
-        setUseAvatar(result.avatar);
-        setUserId(result._id);
-        // Загрузка начальных карточек --
-        api
-          .getInitialCards()
-          .then((result) => {
-            setCards(result);
-          })
-          .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-          });
-        // -- Загрузка начальных карточек //
-      })
-      .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-      });
-    // -- Загрузка начальных данных //
-  }, [userName, userDescription, userAvatar, cards, userId]);
+  useEffect(
+    () => {
+      // Загрузка начальных данных --
+      api
+        .getInitialUser()
+        .then(result => {
+          setUserName(result.name);
+          setUserDescription(result.about);
+          setUseAvatar(result.avatar);
+          setUserId(result._id);
+          // Загрузка начальных карточек --
+          api
+            .getInitialCards()
+            .then(result => {
+              setCards(result);
+            })
+            .catch(err => {
+              console.log(err); // выведем ошибку в консоль
+            });
+          // -- Загрузка начальных карточек //
+        })
+        .catch(err => {
+          console.log(err); // выведем ошибку в консоль
+        });
+      // -- Загрузка начальных данных //
+    },
+    []
+    // [userName, userDescription, userAvatar, cards, userId]
+  );
 
   return (
     <main className="main">
@@ -79,7 +83,7 @@ function Main(props) {
         </button>
       </section>
       <ul className="elements">
-        {cards.map((card) => (
+        {cards.map(card => (
           <Card
             key={card._id}
             userId={userId}
