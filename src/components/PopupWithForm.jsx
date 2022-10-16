@@ -1,11 +1,11 @@
 import React from 'react';
 import close from '../images/close.svg';
 
-function PopupWithForm(props) {
+function PopupWithForm({name, isOpen, onClose, title, children, buttonText}) {
   return (
     <div
-      className={`popup popup_${props.name} ${
-        props.isOpen ? 'popup_opened' : ''
+      className={`popup popup_${name} ${
+        isOpen ? 'popup_opened' : ''
       }`}
     >
       <div className="popup__container">
@@ -13,7 +13,7 @@ function PopupWithForm(props) {
           className="popup__close-button cross"
           type="button"
           aria-label="закрыть"
-          onClick={props.onClose}
+          onClick={onClose}
         >
           <img
             src={close}
@@ -22,11 +22,11 @@ function PopupWithForm(props) {
           />
         </button>
         <div className="popup__form-container">
-          <h2 className="popup__heading">{props.title}</h2>
-          <form name={props.name} className={`popup__form popup__form_${props.name}`}>
-            {props.children}
-            <button type="submit" className="popup__button" aria-label={props.buttonText}>
-              {props.buttonText}
+          <h2 className="popup__heading">{title}</h2>
+          <form name={name} className={`popup__form popup__form_${name}`}>
+            {children}
+            <button type="submit" className="popup__button" aria-label={buttonText}>
+              {buttonText}
             </button>
           </form>
         </div>

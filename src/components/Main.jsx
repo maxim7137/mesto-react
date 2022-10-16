@@ -45,7 +45,6 @@ function Main(props) {
       // -- Загрузка начальных данных //
     },
     []
-    // [userName, userDescription, userAvatar, cards, userId]
   );
 
   return (
