@@ -24,7 +24,7 @@ function PopupWithForm(props) {
         <div className="popup__form-container">
           <h2 className="popup__heading">{props.title}</h2>
           <form name={props.name} className={`popup__form popup__form_${props.name}`}>
-            {props.childrenForm}
+            {props.children}
             <button type="submit" className="popup__button" aria-label={props.buttonText}>
               {props.buttonText}
             </button>
