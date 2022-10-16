@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 
-import '../index.css';
-
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
-import PopupWithForm, {
-  ProfileEditForm,
-  CardAddForm,
-  AvatarEditForm,
-  CardDeleteForm,
-} from './PopupWithForm';
+import PopupWithForm from './PopupWithForm';
+import ProfileEditForm from './ProfileEditForm';
+import CardAddForm from './CardAddForm';
+import AvatarEditForm from './AvatarEditForm';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -56,6 +52,7 @@ function App() {
           onClose={closeAllPopups}
           name="profile"
           title="Редактировать профиль"
+          buttonText="Сохранить"
           childrenForm={<ProfileEditForm />}
         />
         <PopupWithForm
@@ -63,6 +60,7 @@ function App() {
           onClose={closeAllPopups}
           name="card"
           title="Новое место"
+          buttonText="Создать"
           childrenForm={<CardAddForm />}
         />
         <PopupWithForm
@@ -70,13 +68,10 @@ function App() {
           onClose={closeAllPopups}
           name="avatar"
           title="Обновить аватар"
+          buttonText="Сохранить"
           childrenForm={<AvatarEditForm />}
         />
-        <PopupWithForm
-          name="delete"
-          title="Вы уверены?"
-          childrenForm={<CardDeleteForm />}
-        />
+        <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да" />
         <ImagePopup
           isOpen={isImagePopupOpen}
           onClose={closeAllPopups}
