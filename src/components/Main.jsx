@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { CardsContext } from '../contexts/CardsContext';
+import api from '../utils/Api';
 import Card from './Card';
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
@@ -8,12 +8,50 @@ import plus from '../images/plus.svg';
 
 function Main(props) {
   const user = React.useContext(CurrentUserContext);
-  const cards = React.useContext(CardsContext);
   const userId = user._id;
   const userName = user.name;
   const userDescription = user.about;
   const userAvatar = user.avatar;
+  // <-- Карточки
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then(result => {
+        setCards(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+  // Карточки -->
+
   const handleCardClick = props.onHandleCardClick;
+
+  // <--Лайки
+  /* function handleLike(card) {
+    const isLiked = card.likes.some(i => i._id === userId);
+    if (isLiked) {
+      api
+        .dislikeCard(card.getCardId())
+        .then(result => {
+          card.likeCounter.textContent = result.likes.length;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      api
+        .likeCard(card.getCardId())
+        .then(result => {
+          card.likeCounter.textContent = result.likes.length;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  } */
+  // Лайки-->
 
   return (
     <main className="main">

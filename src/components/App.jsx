@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // Импортируем объекты контекста
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { CardsContext } from '../contexts/CardsContext';
 
 import api from '../utils/Api';
 
@@ -25,20 +24,6 @@ function App() {
       });
   }, []);
   // Контекст текущего пользователя -->
-
-  // <-- Контекст начальных карточек
-  const [cards, setCards] = useState([]);
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then(result => {
-        setCards(result);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-  // Контекст начальных карточек -->
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -69,7 +54,6 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <CardsContext.Provider value={cards}>
         <div className="page">
           <div className="container">
             <Header />
@@ -177,7 +161,6 @@ function App() {
             <Footer />
           </div>
         </div>
-      </CardsContext.Provider>
     </CurrentUserContext.Provider>
   );
 }
