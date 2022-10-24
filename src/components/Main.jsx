@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import api from '../utils/Api';
+import { CardsContext } from '../contexts/CardsContext';
 import Card from './Card';
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
@@ -8,27 +8,12 @@ import plus from '../images/plus.svg';
 
 function Main(props) {
   const user = React.useContext(CurrentUserContext);
+  const cards = React.useContext(CardsContext);
   const userId = user._id;
   const userName = user.name;
   const userDescription = user.about;
   const userAvatar = user.avatar;
-
-  const [cards, setCards] = useState([]);
-
   const handleCardClick = props.onHandleCardClick;
-
-  useEffect(() => {
-    // Загрузка начальных карточек --
-    api
-      .getInitialCards()
-      .then(result => {
-        setCards(result);
-      })
-      .catch(err => {
-        console.log(err); // выведем ошибку в консоль
-      });
-    // -- Загрузка начальных карточек //
-  }, []);
 
   return (
     <main className="main">
