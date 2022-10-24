@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
 import Card from './Card';
 import pen from '../images/pen.svg';
@@ -6,42 +7,27 @@ import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
 
 function Main(props) {
-  const [userId, setUserId] = useState(null);
-  const [userName, setUserName] = useState('Жак Ив Кусто');
-  const [userDescription, setUserDescription] = useState(
-    'Исследователь океана'
-  );
-  const [userAvatar, setUseAvatar] = useState(
-    'https://www.placecage.com/c/120/120'
-  );
+  const user = React.useContext(CurrentUserContext);
+  const userId = user._id;
+  const userName = user.name;
+  const userDescription = user.about;
+  const userAvatar = user.avatar;
+
   const [cards, setCards] = useState([]);
 
   const handleCardClick = props.onHandleCardClick;
 
   useEffect(() => {
-    // Загрузка начальных данных --
+    // Загрузка начальных карточек --
     api
-      .getInitialUser()
+      .getInitialCards()
       .then(result => {
-        setUserName(result.name);
-        setUserDescription(result.about);
-        setUseAvatar(result.avatar);
-        setUserId(result._id);
-        // Загрузка начальных карточек --
-        api
-          .getInitialCards()
-          .then(result => {
-            setCards(result);
-          })
-          .catch(err => {
-            console.log(err); // выведем ошибку в консоль
-          });
-        // -- Загрузка начальных карточек //
+        setCards(result);
       })
       .catch(err => {
         console.log(err); // выведем ошибку в консоль
       });
-    // -- Загрузка начальных данных //
+    // -- Загрузка начальных карточек //
   }, []);
 
   return (
