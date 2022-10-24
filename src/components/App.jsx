@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// Импортируем объект контекста
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import api from '../utils/Api';
 
@@ -51,7 +53,8 @@ function App() {
   }
 
   return (
-    <div className="page">
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
       <div className="container">
         <Header />
         <Main
@@ -158,6 +161,7 @@ function App() {
         <Footer />
       </div>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
