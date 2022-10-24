@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import api from '../utils/Api';
 
 import Header from './Header';
 import Main from './Main';
@@ -7,6 +9,20 @@ import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 
 function App() {
+  // <-- Контекст текущего пользователя
+  const [currentUser, setCurrentUser] = useState({});
+  useEffect(() => {
+    api
+      .getInitialUser()
+      .then(result => {
+        setCurrentUser(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+  // Контекст текущего пользователя -->
+
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);

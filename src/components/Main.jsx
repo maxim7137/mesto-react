@@ -18,34 +18,31 @@ function Main(props) {
 
   const handleCardClick = props.onHandleCardClick;
 
-  useEffect(
-    () => {
-      // Загрузка начальных данных --
-      api
-        .getInitialUser()
-        .then(result => {
-          setUserName(result.name);
-          setUserDescription(result.about);
-          setUseAvatar(result.avatar);
-          setUserId(result._id);
-          // Загрузка начальных карточек --
-          api
-            .getInitialCards()
-            .then(result => {
-              setCards(result);
-            })
-            .catch(err => {
-              console.log(err); // выведем ошибку в консоль
-            });
-          // -- Загрузка начальных карточек //
-        })
-        .catch(err => {
-          console.log(err); // выведем ошибку в консоль
-        });
-      // -- Загрузка начальных данных //
-    },
-    []
-  );
+  useEffect(() => {
+    // Загрузка начальных данных --
+    api
+      .getInitialUser()
+      .then(result => {
+        setUserName(result.name);
+        setUserDescription(result.about);
+        setUseAvatar(result.avatar);
+        setUserId(result._id);
+        // Загрузка начальных карточек --
+        api
+          .getInitialCards()
+          .then(result => {
+            setCards(result);
+          })
+          .catch(err => {
+            console.log(err); // выведем ошибку в консоль
+          });
+        // -- Загрузка начальных карточек //
+      })
+      .catch(err => {
+        console.log(err); // выведем ошибку в консоль
+      });
+    // -- Загрузка начальных данных //
+  }, []);
 
   return (
     <main className="main">
