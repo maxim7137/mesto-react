@@ -12,6 +12,8 @@ function Main(props) {
   const userName = user.name;
   const userDescription = user.about;
   const userAvatar = user.avatar;
+  const handleCardClick = props.onHandleCardClick;
+
   // <-- Карточки
   const [cards, setCards] = useState([]);
   useEffect(() => {
@@ -26,31 +28,29 @@ function Main(props) {
   }, []);
   // Карточки -->
 
-  const handleCardClick = props.onHandleCardClick;
-
   // <--Лайки
-  /* function handleLike(card) {
+  function handleLike(card) {
     const isLiked = card.likes.some(i => i._id === userId);
     if (isLiked) {
       api
-        .dislikeCard(card.getCardId())
-        .then(result => {
-          card.likeCounter.textContent = result.likes.length;
+        .dislikeCard(card._id)
+        .then(newCard => {
+          setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
         })
         .catch(err => {
           console.log(err);
         });
     } else {
       api
-        .likeCard(card.getCardId())
-        .then(result => {
-          card.likeCounter.textContent = result.likes.length;
+        .likeCard(card._id)
+        .then(newCard => {
+          setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
         })
         .catch(err => {
           console.log(err);
         });
     }
-  } */
+  }
   // Лайки-->
 
   return (
@@ -92,6 +92,7 @@ function Main(props) {
           <Card
             key={card._id}
             onCardClick={handleCardClick}
+            onCardLike={handleLike}
             card={card}
             {...card}
           />

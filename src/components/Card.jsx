@@ -9,10 +9,10 @@ const srcError =
 // лайкнута ли мной
 function isLikedByMe(array, userId) {
   const arrayOfLikedId = [];
-  array.forEach((element) => {
+  array.forEach(element => {
     arrayOfLikedId.push(element._id);
   });
-  const containsUserId = arrayOfLikedId.some((element) => element === userId);
+  const containsUserId = arrayOfLikedId.some(element => element === userId);
   return containsUserId;
 }
 // моя ли карточка
@@ -24,13 +24,17 @@ function errorHandler(event) {
   event.target.src = srcError;
 }
 
-function Card({ link, name, likes, owner, onCardClick, card }) {
+function Card({ link, name, likes, owner, onCardClick, onCardLike, card }) {
   const user = React.useContext(CurrentUserContext);
   const userId = user._id;
 
   // функция обработчика клика на картинку
   function handleClick() {
     onCardClick(card);
+  }
+  // функция обработчика клика на лайк
+  function handleLikeClick() {
+    onCardLike(card);
   }
   return (
     <li className="elements__element">
@@ -45,6 +49,7 @@ function Card({ link, name, likes, owner, onCardClick, card }) {
         <h2 className="elements__name">{name}</h2>
         <div className="elements__like-container">
           <button
+            onClick={handleLikeClick}
             className={
               isLikedByMe(likes, userId)
                 ? 'elements__like-button elements__like-button_liked'
