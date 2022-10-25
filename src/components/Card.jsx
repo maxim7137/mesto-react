@@ -24,7 +24,7 @@ function errorHandler(event) {
   event.target.src = srcError;
 }
 
-function Card({ link, name, likes, owner, onCardClick, onCardLike, card }) {
+function Card({ link, name, likes, owner, onCardClick, onCardLike, onCardDelete, card }) {
   const user = React.useContext(CurrentUserContext);
   const userId = user._id;
 
@@ -35,6 +35,10 @@ function Card({ link, name, likes, owner, onCardClick, onCardLike, card }) {
   // функция обработчика клика на лайк
   function handleLikeClick() {
     onCardLike(card);
+  }
+  // функция обработчика клика на корзину
+  function handleDeleteClick() {
+    onCardDelete(card);
   }
   return (
     <li className="elements__element">
@@ -63,6 +67,7 @@ function Card({ link, name, likes, owner, onCardClick, onCardLike, card }) {
       </div>
       {isMyCard(userId, owner) && (
         <img
+          onClick={handleDeleteClick}
           src={trash}
           alt="корзина"
           className="elements__trash"

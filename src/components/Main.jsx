@@ -53,6 +53,17 @@ function Main(props) {
   }
   // Лайки-->
 
+  // <-- Удаление
+  function handleCardDelete(card) {
+    api
+      .delCard(card._id)
+      .then(setCards(state => state.filter(stateCard => stateCard._id !== card._id)))
+      .catch(err => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  }
+  // Удаление -->
+
   return (
     <main className="main">
       <section className="profile">
@@ -93,6 +104,7 @@ function Main(props) {
             key={card._id}
             onCardClick={handleCardClick}
             onCardLike={handleLike}
+            onCardDelete={handleCardDelete}
             card={card}
             {...card}
           />
