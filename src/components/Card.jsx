@@ -1,5 +1,6 @@
 import React from 'react';
 import trash from '../images/trash.svg';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 const srcError =
   'https://camo.githubusercontent.com/2515d63ed9f010c45188fb16aa813f67c886fcb713f8395964abcbd22bd791ef/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f41394563427a64367438445a652f67697068792e676966';
@@ -23,7 +24,10 @@ function errorHandler(event) {
   event.target.src = srcError;
 }
 
-function Card({ link, name, likes, userId, owner, onCardClick, card }) {
+function Card({ link, name, likes, owner, onCardClick, card }) {
+  const user = React.useContext(CurrentUserContext);
+  const userId = user._id;
+
   // функция обработчика клика на картинку
   function handleClick() {
     onCardClick(card);

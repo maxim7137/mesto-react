@@ -91,7 +91,6 @@ function Main(props) {
         {cards.map(card => (
           <Card
             key={card._id}
-            userId={userId}
             onCardClick={handleCardClick}
             card={card}
             {...card}
