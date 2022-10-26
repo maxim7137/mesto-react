@@ -53,6 +53,19 @@ function App() {
     setSelectedCard({});
   }
 
+  // Обработчик отправки профиля
+  function handleUpdateUser(data) {
+    api
+      .setUser(data)
+      .then((result) => {
+        setCurrentUser(result);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      })
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -65,7 +78,11 @@ function App() {
             onAddPlace={handleAddPlaceClick}
           />
 
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+          <EditProfilePopup
+            isOpen={isEditProfilePopupOpen}
+            onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
+          />
 
           <PopupWithForm
             isOpen={isAddPlacePopupOpen}

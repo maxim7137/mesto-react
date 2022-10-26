@@ -1,7 +1,7 @@
 import React from 'react';
 import close from '../images/close.svg';
 
-function PopupWithForm({name, isOpen, onClose, title, children, buttonText}) {
+function PopupWithForm({name, isOpen, onClose, title, children, buttonText, onSubmit}) {
   return (
     <div
       className={`popup popup_${name} ${
@@ -23,7 +23,7 @@ function PopupWithForm({name, isOpen, onClose, title, children, buttonText}) {
         </button>
         <div className="popup__form-container">
           <h2 className="popup__heading">{title}</h2>
-          <form name={name} className={`popup__form popup__form_${name}`}>
+          <form name={name} className={`popup__form popup__form_${name}`} onSubmit={onSubmit}>
             {children}
             <button type="submit" className="popup__button" aria-label={buttonText}>
               {buttonText}
