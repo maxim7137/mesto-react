@@ -10,6 +10,7 @@ import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 
 function App() {
   // <-- Контекст текущего пользователя
@@ -57,13 +58,25 @@ function App() {
   function handleUpdateUser(data) {
     api
       .setUser(data)
-      .then((result) => {
+      .then(result => {
         setCurrentUser(result);
         closeAllPopups();
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err); // выведем ошибку в консоль
+      });
+  }
+  // Обработчик отправки аватара
+  function handleUpdateAvatar(link) {
+    api
+      .setAvatar(link)
+      .then(result => {
+        setCurrentUser(result);
+        closeAllPopups();
       })
+      .catch(err => {
+        console.log(err); // выведем ошибку в консоль
+      });
   }
 
   return (
@@ -116,25 +129,12 @@ function App() {
               <span className="popup__error card-address-input-error"></span>
             </label>
           </PopupWithForm>
-          <PopupWithForm
+
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-            name="avatar"
-            title="Обновить аватар"
-            buttonText="Сохранить"
-          >
-            <label className="popup__field">
-              <input
-                required
-                type="url"
-                name="link"
-                id="avatar-address-input"
-                className="popup__input popup__input_avatar_address"
-                placeholder="Ссылка на аватар"
-              />
-              <span className="popup__error avatar-address-input-error"></span>
-            </label>
-          </PopupWithForm>
+            onUpdateAvatar={handleUpdateAvatar}
+          />
 
           <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да" />
 
