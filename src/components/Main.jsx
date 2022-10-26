@@ -35,7 +35,7 @@ function Main(props) {
       api
         .dislikeCard(card._id)
         .then(newCard => {
-          setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
+          setCards(state => state.map(c => (c._id === newCard._id ? newCard : c)));
         })
         .catch(err => {
           console.log(err);
@@ -44,7 +44,7 @@ function Main(props) {
       api
         .likeCard(card._id)
         .then(newCard => {
-          setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
+          setCards(state => state.map(c => (c._id === newCard._id ? newCard : c)));
         })
         .catch(err => {
           console.log(err);
