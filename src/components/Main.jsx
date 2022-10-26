@@ -5,31 +5,33 @@ import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
 import plus from '../images/plus.svg';
 
-function Main(props) {
-  const user = React.useContext(CurrentUserContext);
-  const userName = user.name;
-  const userDescription = user.about;
-  const userAvatar = user.avatar;
-  const handleCardClick = props.onHandleCardClick;
-  const handleCardLike = props.onCardLike;
-  const handleCardDelete = props.onCardDelete;
-  const cards = props.cards;
+function Main({
+  onHandleCardClick,
+  onCardLike,
+  onEditProfile,
+  onCardDelete,
+  onEditAvatar,
+  onAddPlace,
+  cards
+}) {
+
+  const { name, about, avatar } = React.useContext(CurrentUserContext);
 
   return (
     <main className="main">
       <section className="profile">
-        <button className="profile__cover" onClick={props.onEditAvatar}>
+        <button className="profile__cover" onClick={onEditAvatar}>
           <img src={pen} alt="карандаш" className="profile__pen" />
-          <img src={userAvatar} alt="аватар" className="profile__avatar" />
+          <img src={avatar} alt="аватар" className="profile__avatar" />
         </button>
         <div className="profile__info">
           <div className="profile__name-edit">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{name}</h1>
             <button
               className="profile__edit-button"
               type="button"
               aria-label="редактировать профиль"
-              onClick={props.onEditProfile}
+              onClick={onEditProfile}
             >
               <img
                 src={edit}
@@ -38,13 +40,13 @@ function Main(props) {
               />
             </button>
           </div>
-          <p className="profile__character">{userDescription}</p>
+          <p className="profile__character">{about}</p>
         </div>
         <button
           className="profile__add-button"
           type="button"
           aria-label="добавить карточку"
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
         >
           <img src={plus} alt="плюс" className="profile__add-button-img" />
         </button>
@@ -53,9 +55,9 @@ function Main(props) {
         {cards.map(card => (
           <Card
             key={card._id}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardClick={onHandleCardClick}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
             card={card}
             {...card}
           />

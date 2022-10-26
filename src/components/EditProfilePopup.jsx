@@ -9,7 +9,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   useEffect(() => {
     setUserName(user.name);
     setUserDescription(user.about);
-  }, [user]);
+  }, [user, isOpen]);
   // Обработчик изменения инпута обновляет стейт
   function handleChange(e) {
     if (e.target.name === 'name') {

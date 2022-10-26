@@ -1,9 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const nameRef = useRef();
   const linkRef = useRef();
+
+  useEffect(() => {
+    if (isOpen) {
+      nameRef.current.value = '';
+      linkRef.current.value = '';
+    }
+  }, [isOpen]);
 
   // Обработчик отправки формы
   function handleSubmit(e) {

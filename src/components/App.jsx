@@ -35,6 +35,7 @@ function App() {
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [candidateForRemove, setCandidateForRemove] = useState({});
+  const [cards, setCards] = useState([]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -64,7 +65,6 @@ function App() {
 
   // <-- всё, что касается переменной cards --
   // <-- Карточки
-  const [cards, setCards] = useState([]);
   useEffect(() => {
     api
       .getInitialCards()
