@@ -32,7 +32,9 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
+  const [candidateForRemove, setCandidateForRemove] = useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -47,11 +49,16 @@ function App() {
     setSelectedCard(card);
     setIsImagePopupOpen(true);
   }
+  function handleDeletePopupClick(card) {
+    setCandidateForRemove(card);
+    setIsDeletePopupOpen(true);
+  }
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsImagePopupOpen(false);
+    setIsDeletePopupOpen(false);
     setSelectedCard({});
   }
 
@@ -100,14 +107,17 @@ function App() {
   // Лайки-->
 
   // <-- Удаление
-  function handleCardDelete(card) {
+  function handleSubmitDelete(e) {
+    e.preventDefault();
+    const card = candidateForRemove;
     api
       .delCard(card._id)
       .then(
         setCards(state => state.filter(stateCard => stateCard._id !== card._id))
       )
+      .then(closeAllPopups())
       .catch(err => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       });
   }
   // Удаление -->
@@ -162,7 +172,7 @@ function App() {
             onAddPlace={handleAddPlaceClick}
             cards={cards}
             onCardLike={handleLike}
-            onCardDelete={handleCardDelete}
+            onCardDelete={handleDeletePopupClick}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
@@ -179,7 +189,14 @@ function App() {
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
           />
-          <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да" />
+          <PopupWithForm
+            isOpen={isDeletePopupOpen}
+            onClose={closeAllPopups}
+            onSubmit={handleSubmitDelete}
+            name="delete"
+            title="Вы уверены?"
+            buttonText="Да"
+          />
           <ImagePopup
             isOpen={isImagePopupOpen}
             onClose={closeAllPopups}
