@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import api from '../utils/Api';
 import Card from './Card';
 import pen from '../images/pen.svg';
 import edit from '../images/edit.svg';
@@ -8,61 +7,13 @@ import plus from '../images/plus.svg';
 
 function Main(props) {
   const user = React.useContext(CurrentUserContext);
-  const userId = user._id;
   const userName = user.name;
   const userDescription = user.about;
   const userAvatar = user.avatar;
   const handleCardClick = props.onHandleCardClick;
-
-  // <-- Карточки
-  const [cards, setCards] = useState([]);
-  useEffect(() => {
-    api
-      .getInitialCards()
-      .then(result => {
-        setCards(result);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-  // Карточки -->
-
-  // <--Лайки
-  function handleLike(card) {
-    const isLiked = card.likes.some(i => i._id === userId);
-    if (isLiked) {
-      api
-        .dislikeCard(card._id)
-        .then(newCard => {
-          setCards(state => state.map(c => (c._id === newCard._id ? newCard : c)));
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } else {
-      api
-        .likeCard(card._id)
-        .then(newCard => {
-          setCards(state => state.map(c => (c._id === newCard._id ? newCard : c)));
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  }
-  // Лайки-->
-
-  // <-- Удаление
-  function handleCardDelete(card) {
-    api
-      .delCard(card._id)
-      .then(setCards(state => state.filter(stateCard => stateCard._id !== card._id)))
-      .catch(err => {
-        console.log(err); // выведем ошибку в консоль
-      });
-  }
-  // Удаление -->
+  const handleCardLike = props.onCardLike;
+  const handleCardDelete = props.onCardDelete;
+  const cards = props.cards;
 
   return (
     <main className="main">
@@ -103,7 +54,7 @@ function Main(props) {
           <Card
             key={card._id}
             onCardClick={handleCardClick}
-            onCardLike={handleLike}
+            onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
             card={card}
             {...card}

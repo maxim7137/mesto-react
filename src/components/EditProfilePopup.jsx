@@ -41,7 +41,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     >
       <label className="popup__field">
         <input
-          value={userName}
+          defaultValue={userName}
           onChange={handleChange}
           required
           type="text"
@@ -56,7 +56,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       </label>
       <label className="popup__field">
         <input
-          value={userDescription}
+          defaultValue={userDescription}
           onChange={handleChange}
           required
           type="text"
