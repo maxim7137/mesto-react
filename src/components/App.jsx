@@ -122,7 +122,7 @@ function App() {
         closeAllPopups();
       })
       .catch(err => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       });
   }
   // Обработчик отправки аватара
@@ -134,10 +134,9 @@ function App() {
         closeAllPopups();
       })
       .catch(err => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       });
   }
-
   // Обработчик отправки места
   function handleAddPlaceSubmit(data) {
     api
@@ -147,7 +146,7 @@ function App() {
         closeAllPopups();
       })
       .catch(err => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       });
   }
 
@@ -165,27 +164,22 @@ function App() {
             onCardLike={handleLike}
             onCardDelete={handleCardDelete}
           />
-
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
             onUpdateUser={handleUpdateUser}
           />
-
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
           />
-
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
           />
-
           <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да" />
-
           <ImagePopup
             isOpen={isImagePopupOpen}
             onClose={closeAllPopups}
