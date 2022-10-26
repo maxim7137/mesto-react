@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "edf6ad3297082e5aface",
+    "revision": "f9a072fbf7ce5a2418c6",
     "url": "./static/css/main.90778e15.chunk.css"
   },
   {
-    "revision": "edf6ad3297082e5aface",
-    "url": "./static/js/main.edf6ad32.chunk.js"
+    "revision": "f9a072fbf7ce5a2418c6",
+    "url": "./static/js/main.f9a072fb.chunk.js"
   },
   {
     "revision": "6d4599ca39805c4b2f00",
@@ -44,39 +44,39 @@ self.__precacheManifest = [
     "url": "./static/media/plus.bdfb8ebb.svg"
   },
   {
-    "revision": "dc131113894217b5031000575d9de002",
-    "url": "./static/media/Inter-Regular.dc131113.woff2"
-  },
-  {
-    "revision": "75db5319e7e87c587019a5df08d7272c",
-    "url": "./static/media/Inter-Medium.75db5319.woff2"
-  },
-  {
     "revision": "3ac83020fe53b617b79b5e2ad66764af",
     "url": "./static/media/Inter-Regular.3ac83020.woff"
+  },
+  {
+    "revision": "dc131113894217b5031000575d9de002",
+    "url": "./static/media/Inter-Regular.dc131113.woff2"
   },
   {
     "revision": "c0638bea87a05fdfa2bb3bba2efe54e4",
     "url": "./static/media/Inter-Medium.c0638bea.woff"
   },
   {
-    "revision": "661569afe57a38e1529a775a465da20b",
-    "url": "./static/media/Inter-Black.661569af.woff2"
-  },
-  {
-    "revision": "d0b121f3a9d3d88afdfd6902d31ee9a0",
-    "url": "./static/media/Inter-Black.d0b121f3.woff"
-  },
-  {
-    "revision": "eaff1f34949b949fb561a6f4b0ce9121",
-    "url": "./static/media/liked.eaff1f34.svg"
+    "revision": "75db5319e7e87c587019a5df08d7272c",
+    "url": "./static/media/Inter-Medium.75db5319.woff2"
   },
   {
     "revision": "cb5f16439886c2d2781c07c597fe5b1a",
     "url": "./static/media/like.cb5f1643.svg"
   },
   {
-    "revision": "0f96bb39507a8902cc01bd0148e069e4",
+    "revision": "d0b121f3a9d3d88afdfd6902d31ee9a0",
+    "url": "./static/media/Inter-Black.d0b121f3.woff"
+  },
+  {
+    "revision": "661569afe57a38e1529a775a465da20b",
+    "url": "./static/media/Inter-Black.661569af.woff2"
+  },
+  {
+    "revision": "eaff1f34949b949fb561a6f4b0ce9121",
+    "url": "./static/media/liked.eaff1f34.svg"
+  },
+  {
+    "revision": "8a6d32f80c5fe689534a6dd5b3e8a9f5",
     "url": "./index.html"
   }
 ];
