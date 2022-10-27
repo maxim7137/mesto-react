@@ -5,8 +5,8 @@ import PopupWithForm from './PopupWithForm';
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const user = useContext(CurrentUserContext);
   // Стейты, в которых содержатся значения инпутов
-  const [userName, setUserName] = useState(user.name);
-  const [userDescription, setUserDescription] = useState(user.name);
+  const [userName, setUserName] = useState(' ');
+  const [userDescription, setUserDescription] = useState(' ');
 
   // Обработчик изменения инпута обновляет стейт
   function handleChange(e) {
@@ -29,8 +29,10 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   }
 
   useEffect(() => {
-    setUserName(user.name);
-    setUserDescription(user.about);
+    if (user.name) {
+      setUserName(user.name);
+      setUserDescription(user.about);
+    }
   }, [isOpen]);
 
   return (
@@ -44,7 +46,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     >
       <label className="popup__field">
         <input
-          value={userName || ''}
+          value={userName}
           onChange={handleChange}
           required
           type="text"
@@ -59,7 +61,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       </label>
       <label className="popup__field">
         <input
-          value={userDescription || ''}
+          value={userDescription}
           onChange={handleChange}
           required
           type="text"
