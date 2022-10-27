@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import PopupWithForm from './PopupWithForm';
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-  const user = React.useContext(CurrentUserContext);
+  const user = useContext(CurrentUserContext);
+  // Стейты, в которых содержатся значения инпутов
   const [userName, setUserName] = useState(user.name);
   const [userDescription, setUserDescription] = useState(user.about);
-  useEffect(() => {
-    setUserName(user.name);
-    setUserDescription(user.about);
-  }, [user, isOpen]);
+
   // Обработчик изменения инпута обновляет стейт
   function handleChange(e) {
     if (e.target.name === 'name') {
@@ -19,7 +17,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       setUserDescription(e.target.value);
     }
   }
-// Обработчик отправки формы
+  // Обработчик отправки формы
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
@@ -29,6 +27,11 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       about: userDescription
     });
   }
+
+  useEffect(() => {
+    setUserName(user.name);
+    setUserDescription(user.about);
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -41,7 +44,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     >
       <label className="popup__field">
         <input
-          defaultValue={userName}
+          value={userName}
           onChange={handleChange}
           required
           type="text"
@@ -56,7 +59,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       </label>
       <label className="popup__field">
         <input
-          defaultValue={userDescription}
+          value={userDescription}
           onChange={handleChange}
           required
           type="text"
