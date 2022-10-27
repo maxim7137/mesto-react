@@ -6,7 +6,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const user = useContext(CurrentUserContext);
   // Стейты, в которых содержатся значения инпутов
   const [userName, setUserName] = useState(user.name);
-  const [userDescription, setUserDescription] = useState(user.about);
+  const [userDescription, setUserDescription] = useState(user.name);
 
   // Обработчик изменения инпута обновляет стейт
   function handleChange(e) {
@@ -44,7 +44,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     >
       <label className="popup__field">
         <input
-          value={userName}
+          value={userName || ''}
           onChange={handleChange}
           required
           type="text"
@@ -59,7 +59,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       </label>
       <label className="popup__field">
         <input
-          value={userDescription}
+          value={userDescription || ''}
           onChange={handleChange}
           required
           type="text"
