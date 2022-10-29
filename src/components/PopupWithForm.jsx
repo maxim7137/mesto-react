@@ -1,4 +1,3 @@
-import React from 'react';
 import close from '../images/close.svg';
 
 function PopupWithForm({

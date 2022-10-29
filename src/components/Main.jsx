@@ -1,4 +1,4 @@
-import React from 'react';
+import {useContext} from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import Card from './Card';
 import pen from '../images/pen.svg';
@@ -15,7 +15,7 @@ function Main({
   cards
 }) {
 
-  const { name, about, avatar } = React.useContext(CurrentUserContext);
+  const { name, about, avatar } = useContext(CurrentUserContext);
 
   return (
     <main className="main">

@@ -1,4 +1,5 @@
-import React from 'react';
+// import React from 'react';
+import { useContext } from 'react';
 import trash from '../images/trash.svg';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -9,10 +10,10 @@ const srcError =
 // лайкнута ли мной
 function isLikedByMe(array, userId) {
   const arrayOfLikedId = [];
-  array.forEach(element => {
+  array.forEach((element) => {
     arrayOfLikedId.push(element._id);
   });
-  const containsUserId = arrayOfLikedId.some(element => element === userId);
+  const containsUserId = arrayOfLikedId.some((element) => element === userId);
   return containsUserId;
 }
 // моя ли карточка
@@ -24,8 +25,17 @@ function errorHandler(event) {
   event.target.src = srcError;
 }
 
-function Card({ link, name, likes, owner, onCardClick, onCardLike, onCardDelete, card }) {
-  const user = React.useContext(CurrentUserContext);
+function Card({
+  link,
+  name,
+  likes,
+  owner,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  card,
+}) {
+  const user = useContext(CurrentUserContext);
   const userId = user._id;
 
   // функция обработчика клика на картинку
