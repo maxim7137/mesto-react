@@ -19,8 +19,9 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     // Передаём значения рефа
     onAddPlace({
       name: nameRef.current.value,
-      link: linkRef.current.value
+      link: linkRef.current.value,
     });
+    e.target.reset();
   }
 
   return (
